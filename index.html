@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Journly</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
+    }
+    header, footer {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    nav {
+      background-color: #444;
+      text-align: center;
+      padding: 0.5em;
+    }
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 15px;
+      font-weight: bold;
+    }
+    nav a:hover {
+      text-decoration: underline;
+    }
+    section {
+      display: none;
+      padding: 20px;
+    }
+    section.active {
+      display: block;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    table, th, td {
+      border: 1px solid #333;
+      padding: 8px;
+    }
+    fieldset {
+      margin-top: 15px;
+      padding: 10px;
+      border: 1px solid #999;
+    }
+    progress {
+      width: 100%;
+    }
+  </style>
+  <script>
+    function showPage(id) {
+      document.querySelectorAll("section").forEach(s => s.classList.remove("active"));
+      document.getElementById(id).classList.add("active");
+    }
+    window.onload = () => showPage('home');
+  </script>
+</head>
+
+<body>
+
+  <!-- Header -->
+  <header>
+    <h1>Journly</h1>
+    <p><em>Write your thoughts. Your space. Your mind.</em></p>
+  </header>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#" onclick="showPage('home')">Home</a>
+    <a href="#" onclick="showPage('write')">Write</a>
+    <a href="#" onclick="showPage('previous')">Entries</a>
+    <a href="#" onclick="showPage('inspiration')">Inspiration</a>
+    <a href="#" onclick="showPage('media')">Media</a>
+    <a href="#" onclick="showPage('extras')">Progress</a>
+    <a href="#" onclick="showPage('about')">About</a>
+    <a href="#" onclick="showPage('contact')">Contact</a>
+  </nav>
+
+  <!-- Page: Home -->
+  <section id="home" class="active">
+    <h2>Welcome to journly!!</h2>
+    <p>This is your personal digital journal. Use the tabs above to navigate and write freely.</p>
+  </section>
+
+  <!-- Page: Write -->
+  <section id="write">
+    <h2>Write a New Journal Entry</h2>
+    <form action="/action_page.php" method="get">
+      <fieldset>
+        <legend>Journal Entry</legend>
+        <label for="entryDate">Date:</label>
+        <input type="date" id="entryDate" name="entryDate" required><br><br>
+
+        <label for="entryTitle">Title:</label>
+        <input type="text" id="entryTitle" name="entryTitle" placeholder="My Mood Today..." required><br><br>
+
+        <label for="entryText">Journal:</label><br>
+        <textarea id="entryText" name="entryText" rows="8" cols="60" placeholder="Write your thoughts here..." required></textarea><br><br>
+
+        <label for="mood">Mood:</label>
+        <select id="mood" name="mood">
+          <option value="😊">😊 Happy</option>
+          <option value="😞">😞 Sad</option>
+          <option value="😤">😤 Stressed</option>
+          <option value="😌">😌 Calm</option>
+        </select><br><br>
+
+        <label>Upload a photo (optional):</label>
+        <input type="file" name="moodPhoto"><br><br>
+
+        <label>Private Entry?</label>
+        <input type="checkbox" name="private" checked> Yes<br><br>
+
+        <label>Day Intensity (0-10):</label>
+        <input type="range" name="intensity" min="0" max="10"><br><br>
+
+        <label>Email (optional):</label>
+        <input type="email" name="email"><br><br>
+
+        <input type="submit" value="Save Entry">
+        <input type="reset" value="Clear Form">
+      </fieldset>
+    </form>
+  </section>
+
+  <!-- Page: Previous Entries -->
+  <section id="previous">
+    <h2>Your Mood Tracker</h2>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Mood</th>
+        <th>Short Note</th>
+      </tr>
+      <tr>
+        <td>2025-07-18</td>
+        <td>😊</td>
+        <td>Felt refreshed after writing.</td>
+      </tr>
+      <tr>
+        <td>2025-07-17</td>
+        <td>😌</td>
+        <td>Evening walks calm me down.</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- Page: Inspiration -->
+  <section id="inspiration">
+    <h2>Inspiration for Writing</h2>
+    <ul>
+      <li>"Journaling is like whispering to one's self and listening at the same time."</li>
+      <li>"Turn your wounds into wisdom." – Oprah Winfrey</li>
+      <li>"Write what disturbs you..." – Natalie Goldberg</li>
+    </ul>
+    <h3>Bonus Tip</h3>
+    <p>Let your <span style="font-weight:bold; color:darkblue;">inner voice</span> guide your pen.</p>
+  </section>
+
+  <!-- Page: Media -->
+  <section id="media">
+    <h2>Calm your mind here</h2>
+
+    <h3>Peaceful Drizzle</h3>
+    <audio controls>
+      <source src="rain.mp3" type="audio/mpeg">
+      Your browser does not support audio.
+    </audio>
+
+    <h3>Mental Health Hack</h3>
+    <video width="320" height="240" controls>
+      <source src="calm.mp4" type="video/mp4">
+      Your browser does not support video.
+    </video>
+
+    
+  </section>
+
+  <!-- Page: Extras -->
+  <section id="extras">
+    <h2>Progress Tracker</h2>
+    <p>Goal: Write 300 words today.</p>
+    <progress value="150" max="300"></progress> 50% complete
+  </section>
+
+  <!-- Page: About -->
+  <section id="about">
+    <h2>About you based on your previous entries</h2>
+    <p>Hello! I'm <strong>Nithya Rubini</strong>, a passionate coder and creative thinker who loves journaling during rainy evenings and sipping hot coffee. I find peace in the little things and love expressing myself through tech and art.</p>
+
+    <h2>My Favorites</h2>
+    <ul>
+      <li><strong>Season:</strong> Summer Days</li>
+      <li><strong>Hobby:</strong> Journaling & cooking</li>
+      <li><strong>Movie:</strong> Hridayam</li>
+      <li><strong>Character:</strong> Nithya from Hridayam</li>
+      <li><strong>Music-genre:</strong> melody</li>
+    </ul>
+    <h3>Favorite Song (YouTube Embed)</h3>
+  <iframe width="420" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" title="Lo-Fi Beats" allowfullscreen></iframe>
+
+  </section>
+
+  <!-- Page: Contact -->
+  <section id="contact">
+    <h2>Need Help?</h2>
+    <p>Email us at <a href="mailto:support@onlinejournal.com">support@onlinejournal.com</a></p>
+    <p>Visit our <a href="https://onlinejournalhelp.com" target="_blank">Help Center</a></p>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Online Journal Platform. All rights reserved.</p>
+  </footer>
+
+</body>
+</html>
